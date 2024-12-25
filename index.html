@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>万物名付け機</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        ↑
+        <br />
+        名付けたいものに向ける
+    </div>
+    <div style="text-align: center;">
+        <br />
+        <button id="create_name" style="padding: 1em">名付ける</button>
+        <br />
+        <br />
+        <div id="naming">
+            命名:<br />
+            <span id="name"></span>
+        </div>
+    </div>
+
+    <div style="position: fixed; left: 0; right: 0; bottom: 0; text-align: right;">
+        Contribute on <a href="https://github.com/cathiecode/name-anything">Github</a>
+    </div>
+
+    <style>
+        #naming {
+            visibility: hidden;
+        }
+
+        #naming.named {
+            visibility: visible;
+        }
+    </style>
+    <script type="module">
+        import { v4 as uuidv4 } from "https://unpkg.com/uuid@11.0.3/dist/esm-browser/index.js";
+
+        {
+            const button = document.getElementById("create_name");
+            const namingResultContainer = document.getElementById("naming");
+            const nameResultContainer = document.getElementById("name");
+
+            button.addEventListener("click", () => {
+                namingResultContainer.classList.add("named");
+                nameResultContainer.textContent = uuidv4();
+            });
+        }
+    </script>
+</body>
+</html>
